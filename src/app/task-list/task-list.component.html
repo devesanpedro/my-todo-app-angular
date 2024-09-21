@@ -1,0 +1,28 @@
+<section id="tasks">
+    <div id="header">
+        <header>
+            <h2>My To-Do's</h2>
+        </header>
+
+        <menu>
+            <button (click)="onAddTask()">Add Task</button>
+        </menu>
+    </div>
+    <div id="body">
+        <ul *ngFor="let task of this.tasks">
+            <li>
+               <app-task-item 
+               [id]="task.id" 
+               [title]="task.title" 
+               [description]="task.description"
+               [completed]="task.completed"
+               (remove)="onRemoveTask($event)"
+               (complete)="onCompleteTask($event)"></app-task-item>
+            </li>
+        </ul>
+    </div>
+</section>
+
+@if (this.isAddTaskVisible) {
+    <app-task-add (create)="onCreateTask($event)" (cancel)="onCancelTask()" ></app-task-add>
+}
